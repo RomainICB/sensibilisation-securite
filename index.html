@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerte de Sécurité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            padding: 50px;
+        }
+        .alert {
+            background-color: red;
+            padding: 20px;
+            border-radius: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .big-text {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        .subtitle {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 30px;
+            color: #ffffff;
+        }
+        .info {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .yellow {
+            color: #ffcc00;
+        }
+        #advice {
+            font-size: 1.1em;
+            margin-top: 20px;
+            min-height: 50px;
+            text-align: left;
+            display: inline-block;
+        }
+        .highlight {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .logo {
+            max-width: 200px;
+            margin-top: 40px;
+        }
+        #final-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="message">
+        <div class="alert">⚠️ ALERTE DE SECURITE : Intrusion détectée ! ⚠️</div>
+        <p>Une activité suspecte a été enregistrée sur votre compte.<br><br><br><br></p>
+        <p>Veuillez lire <u>attentivement</u> le message qui suit.</p>
+    </div>
+    <div id="reveal" class="hidden">
+        <h1 class="big-text">🐟 POISSON D'AVRIL ! 🎣</h1>
+        <p class="info yellow">Le 1er avril comme tous les autres jours de l'année, je me méfie des liens qui me paraissent suspects !</p>
+        <p class="subtitle">La vigilance chaque jour, c'est la sécurité pour tous !</p>
+        <div id="advice"></div>
+        <br><br>
+        <p id="final-message" class='info'>L'équipe informatique de l'ICB vous remercie pour votre vigilance et vous souhaite une belle journée ☀️</p>
+        <img src="https://www.institut-cancerologie-bourgogne.fr/wp-content/uploads/2023/03/logo-icb-baseline-e1738329118288-2048x724.png" alt="Logo ICB" class="logo">
+    </div>
+    <script>
+        const advices = [
+            "1. Le phishing est la première source d'intrusion en entreprise.",
+            "2. Toujours vérifier l'expéditeur d'un e-mail avant de cliquer sur un lien.",
+            "3. Ne jamais entrer ses identifiants sur un site dont l'URL semble suspecte.",
+            "4. Ne pas télécharger de pièces jointes inattendues, même si l'expéditeur semble connu.",
+            "5. <span class='highlight'>Au moindre doute</span>, contactez le service informatique avant d'agir."
+        ];
+
+        setTimeout(() => {
+            document.getElementById("message").style.display = "none";
+            document.getElementById("reveal").classList.remove("hidden");
+
+            let index = 0;
+            function showAdvice() {
+                if (index < advices.length) {
+                    let adviceElement = document.createElement("p");
+                    adviceElement.innerHTML = advices[index];
+                    document.getElementById("advice").appendChild(adviceElement);
+                    index++;
+                    setTimeout(showAdvice, 3000);
+                } else {
+                    document.getElementById("final-message").style.display = "block";
+                }
+            }
+            showAdvice();
+        }, 5000);
+    </script>
+</body>
+</html>
