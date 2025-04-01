@@ -57,6 +57,10 @@
         }
         #final-message {
             display: none;
+            color: #dda0dd; /* Violet lavande */
+        }
+        #subtitle-text {
+            display: none;
         }
     </style>
 </head>
@@ -64,12 +68,12 @@
     <div id="message">
         <div class="alert">⚠️ ALERTE DE SECURITE : ⚠️<br>Intrusion détectée !</div>
         <p>Une activité suspecte a été enregistrée sur votre compte.<br><br><br><br></p>
-        <p>Veuillez lire <u>attentivement</u> le message qui suit.</p>
+        <p>Veuillez lire <u>attentivement</u> le message qui va apparaître dans quelques instants.</p>
     </div>
     <div id="reveal" class="hidden">
         <h1 class="big-text">🐟 POISSON D'AVRIL ! 🎣</h1>
         <p class="info yellow">Le 1er avril comme tous les autres jours de l'année, je me méfie des liens qui me paraissent suspects !</p>
-        <p class="subtitle">La vigilance chaque jour, c'est la sécurité pour tous !</p>
+        <p id="subtitle-text" class="subtitle">La vigilance chaque jour, c'est la sécurité pour tous !</p>
         <div id="advice"></div>
         <br><br>
         <p id="final-message" class='info'>L'équipe informatique de l'ICB vous remercie pour votre vigilance et vous souhaite une belle journée ☀️</p>
@@ -88,20 +92,30 @@
             document.getElementById("message").style.display = "none";
             document.getElementById("reveal").classList.remove("hidden");
 
-            let index = 0;
-            function showAdvice() {
-                if (index < advices.length) {
-                    let adviceElement = document.createElement("p");
-                    adviceElement.innerHTML = advices[index];
-                    document.getElementById("advice").appendChild(adviceElement);
-                    index++;
-                    setTimeout(showAdvice, 3000);
-                } else {
-                    document.getElementById("final-message").style.display = "block";
+            // Affiche le sous-titre après 2 secondes
+            setTimeout(() => {
+                document.getElementById("subtitle-text").style.display = "block";
+
+                // Puis affiche les conseils après 2 secondes
+                let index = 0;
+                function showAdvice() {
+                    if (index < advices.length) {
+                        let adviceElement = document.createElement("p");
+                        adviceElement.innerHTML = advices[index];
+                        document.getElementById("advice").appendChild(adviceElement);
+                        index++;
+                        setTimeout(showAdvice, 1400);
+                    } else {
+                        setTimeout(() => {
+                            document.getElementById("final-message").style.display = "block";
+                        }, 1000);
+                    }
                 }
-            }
-            showAdvice();
-        }, 5000);
+                setTimeout(showAdvice, 2000);
+
+            }, 2000); // Délai avant affichage du sous-titre
+
+        }, 7000);
     </script>
 </body>
 </html>
